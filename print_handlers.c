@@ -17,7 +17,7 @@
  * Return: 1 or 2;
  */
 
-int print_handler(const char *formatt, int *ind, va_list list, char buffer[],
+int print_handler(const char *format, int *ind, va_list list, char buffer[],
 		int flags, int width, int prec, int size)
 {
 	int i, unknown_length = 0, printed_chars = -1;
@@ -32,7 +32,7 @@ int print_handler(const char *formatt, int *ind, va_list list, char buffer[],
 	while (format_types[i].format != '\0')
 	{
 		if (format[*ind] == format_types[i].format)
-			return (format_types[i].fn(list, buffer, flags, width, prec, size));
+			return (format_types[i].function(list, buffer, flags, width, prec, size));
 		i++;
 	}
 	if (format_types[i].format == '\0')
