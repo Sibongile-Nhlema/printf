@@ -35,6 +35,9 @@ typedef struct format
 	int (*function)(va_list, char[], int, int, int, int);
 } format_t;
 
+int _printf(const char *format, ...);
+int print_handler(const char *formatt, int *ind, va_list list, char buffer[],
+		int flags, int width, int prec, int size);
 /****All functions used****/
 
 /*chars & strings*/
