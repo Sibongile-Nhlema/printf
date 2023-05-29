@@ -16,6 +16,7 @@ int main(void)
 
 	len = _printf("Printf a sentence using our custom printf function.\n");
 	len2 = printf("Printf a sentence using standard printf.\n");
+
 	ui = (unsigned int)INT_MAX + 1024;
 	addr = (void *)0x7ffe637541f0;
 	_printf("Length:[%d, %i]\n", len, len);

@@ -38,8 +38,28 @@ typedef struct format
 /****All functions used****/
 
 /*chars & strings*/
+int print_char(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_string(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_percent(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
 
 /*number*/
+int print_int(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_binary(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_unsigned(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_octal(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_hexadecimal(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_hexa_upper(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_hexa(va_list types, char map_to[], char buffer[], int flags,
+		char flag_ch, int width, int precision, int size);
 
 /*non printable characters*/
 
@@ -47,6 +67,7 @@ typedef struct format
 
 /*other specifiers*/
 int get_width(const char *format, int *i, va_list list);
+
 /*string in reverse*/
 
 /*string in rot 13*/
