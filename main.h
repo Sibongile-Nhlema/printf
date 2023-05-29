@@ -46,7 +46,7 @@ typedef struct format
 /*memory address*/
 
 /*other specifiers*/
-
+int get_width(const char *format, int *i, va_list list);
 /*string in reverse*/
 
 /*string in rot 13*/
