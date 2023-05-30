@@ -38,6 +38,7 @@ int _printf(const char *format, ...)
 			printed = print_handler(format, &i, list, buffer,
 					flags, width, prec, size);
 			if (printed == -1)
+				va_end(list);
 				return (-1);
 			printed_chars += printed;
 		}
