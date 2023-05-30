@@ -40,6 +40,6 @@ int main(void)
 	_printf("Len:[%d]\n", len);
 	printf("Standard: Len:[%d]\n", len2);
 	_printf("Unknown:[%r]\n");
-	printf("Standard: Unknown:[%r]\n");
+	/*printf("Standard: Unknown:[%r]\n");*/
 	return (0);
 }

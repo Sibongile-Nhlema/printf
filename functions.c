@@ -6,16 +6,16 @@
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: Width
- * @precision: Precision specification
+ * @prec: Precision specification
  * @size: Size specifier
  * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
-		int flags, int width, int precision, int size)
+		int flags, int width, int prec, int size)
 {
 	char c = va_arg(types, int);
 
-	return (hdle_write_char(c, buffer, flags, width, precision, size));
+	return (hdl_write_char(c, buffer, flags, width, prec, size));
 }
 
 /**
