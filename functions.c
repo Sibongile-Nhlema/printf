@@ -105,30 +105,61 @@ int print_percent(va_list types, char buffer[],
 int print_int(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	int i = BUFF_SIZE - 2;
+	int i = BUFF_SIZE - 1;
 	int is_negative = 0;
-	long int n = va_arg(types, long int);
-	unsigned long int num;
+	int n = va_arg(types, int);
+	unsigned int num;
 
 	n = convert_size_num(n, size);
 	if (n == 0)
 		buffer[i--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)n;
+	num = (unsigned int)n;
 	if (n < 0)
 	{
-		num = (unsigned long int)((-1) * n);
 		is_negative = 1;
+		num = (unsigned int)(-n);
 	}
-	if (flags & FLAG_I)
-		return (write_num(is_negative, i, buffer, flags, width, precision, size));
+	else
+	{
+		num = (unsigned int)n;
+	}
+	if (flags && F_ZERO && !precision)
+	{
+		/*zero padding*/
+		width -= (is_negative ? 1 : 0);
+		while (i >= 0 && width-- > 0)
+		{
+			buffer[i--] = '0';
+		}
+	}
+	else if (width > 0)
+	{
+		width -= (is_negative ? 1 : 0);
+		while (i >= 0 && width-- > 0)
+		{
+			buffer[i--] = ' ';
+		}
+	}
+	if (num == 0)
+	{
+		buffer[i--] = '0';
+	}
 	while (num > 0)
 	{
 		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
-	i++;
-	return (write_num(is_negative, i, buffer, flags, width, precision, size));
+	if (is_negative)
+	{
+		buffer[i--] = '-';
+	}
+	while (i >= 0 && (precision-- > 0))
+	{
+		buffer[i--] = '0';
+	}
+	write(STDOUT_FILENO, &buffer[i + 1], BUFF_SIZE - i - 1);
+	return (BUFF_SIZE - i - 1);
 }
 
 /**
