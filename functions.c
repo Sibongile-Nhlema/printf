@@ -117,51 +117,17 @@ int print_int(va_list types, char buffer[],
 	num = (unsigned int)n;
 	if (n < 0)
 	{
-		is_negative = 1;
 		num = (unsigned int)(-n);
-	}
-	else
-	{
-		num = (unsigned int)n;
-	}
-	if (flags && F_ZERO && !precision)
-	{
-		/*zero padding*/
-		width -= (is_negative ? 1 : 0);
-		while (i >= 0 && width-- > 0)
-		{
-			buffer[i--] = '0';
-		}
-	}
-	else if (width > 0)
-	{
-		width -= (is_negative ? 1 : 0);
-		while (i >= 0 && width-- > 0)
-		{
-			buffer[i--] = ' ';
-		}
-	}
-	if (num == 0)
-	{
-		buffer[i--] = '0';
+		is_negative = 1;
 	}
 	while (num > 0)
 	{
 		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
-	if (is_negative)
-	{
-		buffer[i--] = '-';
-	}
-	while (i >= 0 && (precision-- > 0))
-	{
-		buffer[i--] = '0';
-	}
-	write(STDOUT_FILENO, &buffer[i + 1], BUFF_SIZE - i - 1);
-	return (BUFF_SIZE - i - 1);
+	i++;
+	return (write_num(is_negative, i, buffer, flags, width, precision, size));
 }
-
 /**
  * print_binary - Prints an unsigned number
  * @types: Lista of arguments
