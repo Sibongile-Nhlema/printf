@@ -20,6 +20,7 @@
 #define F_ZERO 4
 #define F_SPACE 16
 #define F_HASH 8
+#define F_INT (1 << 5)
 
 /**
  * struct format - struct op
@@ -93,7 +94,7 @@ int write_num(int is_negative, int ind, char buffer[],
 		int flags, int width, int prec, int size);
 int write_num_buff(int ind, char buffer[], int flags,
 		int width, int prec, int length, char pad, char extra_c);
-int write_unsigned(int is_negative, int ind, char buffer[],
+int write_unsgned(int is_negative, int ind, char buffer[],
 		int flags, int width, int prec, int size);
 int write_pointer(char buffer[], int ind, int length,
 		int width, int flags, char pad, char extra_c, int pad_start);

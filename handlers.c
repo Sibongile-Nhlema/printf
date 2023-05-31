@@ -86,6 +86,15 @@ int write_num(int is_negative, int ind, char buffer[],
 	{
 		extra_ch = ' ';
 	}
+	/*Check if we are writing an integer*/
+	if (flags & F_INT)
+	{
+		if (is_negative)
+		{
+			extra_ch = '-';
+			is_negative = 0;
+		}
+	}
 
 	return (write_num_buff(ind, buffer, flags, width, prec,
 				length, pad, extra_ch));
@@ -151,7 +160,7 @@ int write_num_buff(int ind, char buffer[], int flags,
 }
 
 /**
- * write_unsigned - writes unsigned number
+ * write_unsgned - writes unsigned number
  * @ind: Index at which number start buffer
  * @is_negative: Num indicating if num is negative
  * @buffer: Array of chars
@@ -163,7 +172,7 @@ int write_num_buff(int ind, char buffer[], int flags,
  * Return: Number of written chars
  */
 
-int write_unsigned(int is_negative, int ind, char buffer[],
+int write_unsgned(int is_negative, int ind, char buffer[],
 		int flags, int width, int prec, int size)
 {
 	int length = BUFF_SIZE - ind - 1, i = 0;
